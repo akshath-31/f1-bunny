@@ -8,8 +8,8 @@ interface ChatInputProps {
   value?: string;
 }
 
-export const ChatInput = ({ onSend, value = "" }: ChatInputProps) => {
-  const [message, setMessage] = useState(value);
+export const ChatInput = ({ onSend }: ChatInputProps) => {
+  const [message, setMessage] = useState("");
 
   const handleSend = () => {
     if (message.trim()) {
