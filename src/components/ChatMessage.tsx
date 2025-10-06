@@ -12,7 +12,7 @@ export const ChatMessage = ({ role, content }: ChatMessageProps) => {
         className={`max-w-[80%] rounded-lg px-4 py-3 ${
           isUser
             ? "bg-primary text-primary-foreground racing-glow"
-            : "bg-secondary text-foreground border border-border"
+            : "bg-secondary text-foreground border border-border font-mono"
         }`}
       >
         <p className="text-sm whitespace-pre-wrap">{content}</p>

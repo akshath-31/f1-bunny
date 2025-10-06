@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         orbitron: ['Orbitron', 'sans-serif'],
+        mono: ['Share Tech Mono', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
