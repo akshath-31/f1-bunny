@@ -82,11 +82,11 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Top Left - F1 Bunny Logo */}
-      <div className="absolute top-4 left-4 z-10 animate-fade-in">
+      <div className="absolute top-2 left-4 z-10 animate-fade-in">
         <img 
           src={f1BunnyLogo} 
           alt="F1 Bunny Logo" 
-          className="h-40 w-auto"
+          className="h-48 w-auto"
         />
       </div>
 
