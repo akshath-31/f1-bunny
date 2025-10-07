@@ -3,7 +3,7 @@ import { ChatInput } from "@/components/ChatInput";
 import { ChatMessage } from "@/components/ChatMessage";
 import { QuestionCard } from "@/components/QuestionCard";
 import { FeedbackModal } from "@/components/FeedbackModal";
-import f1BunnyLogo from "@/assets/f1-bunny-logo.png";
+import f1BunnyLogo from "@/assets/f1-bunny-logo-new.png";
 import f1OfficialLogo from "@/assets/f1-official-logo.webp";
 import { toast } from "sonner";
 
@@ -86,7 +86,7 @@ const Index = () => {
         <img 
           src={f1BunnyLogo} 
           alt="F1 Bunny Logo" 
-          className="h-16 w-auto drop-shadow-[0_0_15px_rgba(255,0,0,0.5)]"
+          className="h-24 w-auto"
         />
       </div>
 
