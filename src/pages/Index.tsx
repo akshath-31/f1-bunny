@@ -86,7 +86,7 @@ const Index = () => {
         <img 
           src={f1BunnyLogo} 
           alt="F1 Bunny Logo" 
-          className="h-20 w-auto"
+          className="h-40 w-auto"
         />
       </div>
 
