@@ -1,18 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { ChatInput } from "@/components/ChatInput";
 import { ChatMessage } from "@/components/ChatMessage";
-import { QuestionCard } from "@/components/QuestionCard";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import f1BunnyLogo from "@/assets/f1-bunny-logo-new.png";
 import f1OfficialLogo from "@/assets/f1-official-logo.webp";
 import { toast } from "sonner";
 
-const F1_QUESTIONS = [
-  "What is DRS?",
-  "Do you know where the first F1 race took place?",
-  "Do you know who has the most appearances in F1?",
-  "Which team improved the most this season?",
-];
 
 interface Message {
   role: "user" | "assistant";
@@ -32,9 +25,6 @@ const Index = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleQuestionClick = (question: string) => {
-    handleSendMessage(question);
-  };
 
   const handleSendMessage = async (message: string) => {
     if (!message.trim() || isLoading) return;
@@ -80,7 +70,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
       {/* Top Left - F1 Bunny Logo */}
       <div className="absolute top-0 left-4 z-10 animate-fade-in">
         <img 
@@ -91,9 +81,9 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-20 flex flex-col items-center min-h-screen">
+      <div className="container mx-auto px-4 flex flex-col items-center">
         {/* Hero Section */}
-        <div className={`text-center mb-12 animate-fade-in ${messages.length > 0 ? 'mb-6' : ''}`}>
+        <div className={`text-center mb-8 animate-fade-in ${messages.length > 0 ? 'mb-6' : ''}`}>
           <h1 className="text-5xl md:text-7xl font-black mb-4 text-racing-gradient">
             Hi, Welcome to F1 Bunny!
           </h1>
@@ -124,18 +114,6 @@ const Index = () => {
           <ChatInput onSend={handleSendMessage} />
         </div>
 
-        {/* Question Cards - Only show when no messages */}
-        {messages.length === 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            {F1_QUESTIONS.map((question, index) => (
-              <QuestionCard
-                key={index}
-                question={question}
-                onClick={() => handleQuestionClick(question)}
-              />
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Bottom Left - F1 Official Logo */}
