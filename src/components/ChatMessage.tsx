@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+
 interface ChatMessageProps {
   role: "user" | "assistant";
   content: string;
@@ -15,7 +17,9 @@ export const ChatMessage = ({ role, content }: ChatMessageProps) => {
             : "bg-secondary text-foreground border border-border font-mono"
         }`}
       >
-        <p className="text-sm whitespace-pre-wrap">{content}</p>
+        <div className="text-sm prose prose-sm prose-invert max-w-none">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
       </div>
     </div>
   );
