@@ -6,7 +6,6 @@ import f1BunnyLogo from "@/assets/f1-bunny-logo-new.png";
 import f1OfficialLogo from "@/assets/f1-official-logo.webp";
 import { toast } from "sonner";
 
-
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -15,6 +14,7 @@ interface Message {
 const Index = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [promptSent, setPromptSent] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -25,9 +25,11 @@ const Index = () => {
     scrollToBottom();
   }, [messages]);
 
-
   const handleSendMessage = async (message: string) => {
     if (!message.trim() || isLoading) return;
+
+    // Set promptSent to true when user sends first message
+    setPromptSent(true);
 
     const userMessage: Message = { role: "user", content: message };
     setMessages((prev) => [...prev, userMessage]);
@@ -73,7 +75,7 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
       {/* Top Left - F1 Bunny Logo */}
       <div className="absolute top-0 left-4 z-10 animate-fade-in">
-        <img 
+        <img
           src={f1BunnyLogo} 
           alt="F1 Bunny Logo" 
           className="h-48 w-auto"
@@ -82,15 +84,17 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 flex flex-col items-center">
-        {/* Hero Section */}
-        <div className={`text-center mb-8 animate-fade-in ${messages.length > 0 ? 'mb-6' : ''}`}>
-          <h1 className="text-5xl md:text-7xl font-black mb-4 text-racing-gradient">
-            Hi, Welcome to F1 Bunny!
-          </h1>
-          <p className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
-            This is Vax Merstappen 🦾
-          </p>
-        </div>
+        {/* Hero Section - Only show if prompt not sent */}
+        {!promptSent && (
+          <div className={`text-center mb-8 animate-fade-in ${messages.length > 0 ? 'mb-6' : ''}`}>
+            <h1 className="text-5xl md:text-7xl font-black mb-4 text-racing-gradient">
+              Hi, Welcome to F1 Bunny!
+            </h1>
+            <p className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
+              This is Vax Merstappen 🦾
+            </p>
+          </div>
+        )}
 
         {/* Chat Display */}
         {messages.length > 0 && (
@@ -110,10 +114,9 @@ const Index = () => {
         )}
 
         {/* Chat Input */}
-        <div className="mb-12 w-full flex justify-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <div className="mb-12 w-full flex justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <ChatInput onSend={handleSendMessage} />
         </div>
-
       </div>
 
       {/* Bottom Left - F1 Official Logo */}
@@ -124,7 +127,7 @@ const Index = () => {
         className="absolute bottom-6 left-6 z-10 animate-fade-in hover:scale-110 transition-transform"
         style={{ animationDelay: "0.6s" }}
       >
-        <img 
+        <img
           src={f1OfficialLogo} 
           alt="F1 Official Logo" 
           className="h-12 w-auto drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]"
@@ -132,7 +135,7 @@ const Index = () => {
       </a>
 
       {/* Feedback Button - Bottom Right */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.8s" }}>
+      <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
         <FeedbackModal />
       </div>
 
