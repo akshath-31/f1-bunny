@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { ChatInput } from "@/components/ChatInput";
 import { ChatMessage } from "@/components/ChatMessage";
 import { FeedbackModal } from "@/components/FeedbackModal";
+import { MusicToggle } from "@/components/MusicToggle";
 import f1BunnyLogo from "@/assets/f1-bunny-logo-new.png";
 import f1OfficialLogo from "@/assets/f1-official-logo.webp";
 import { toast } from "sonner";
@@ -133,6 +134,11 @@ const Index = () => {
           className="h-12 w-auto drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]"
         />
       </a>
+
+      {/* Music Toggle - Bottom Right */}
+      <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
+        <MusicToggle />
+      </div>
 
       {/* Feedback Button - Bottom Right */}
       <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>

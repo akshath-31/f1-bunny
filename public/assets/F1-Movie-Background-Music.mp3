@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+    />
+
+    <!-- iOS PWA meta tags - moved to top -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="ScreenApp" />
+    <meta name="apple-itunes-app" content="app-id=6741723588" />
+
+    <!-- Add preload hints for splash screens -->
+    <link rel="preload" as="image" href="assets/mobile/splash.png" />
+
+    <!-- iOS Splash Screen meta tags -->
+    <!-- iPhone 14 Pro Max (1290px x 2796px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPhone 14 Pro (1179px x 2556px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPhone 14 Plus/13 Pro Max/12 Pro Max (1284px x 2778px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPhone 14/13 Pro/13/12 Pro/12 (1170px x 2532px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPhone 13 Mini/12 Mini/11 Pro/XS/X (1125px x 2436px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPhone 11/XR (828px x 1792px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPad Pro 12.9" (2048px x 2732px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPad Pro 11" (1668px x 2388px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iPad Air/Mini (1536px x 2048px) -->
+    <link
+      rel="apple-touch-startup-image"
+      media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+      href="assets/mobile/splash.png"
+    />
+
+    <!-- iOS icon specifications - moved before other links -->
+    <link rel="apple-touch-icon" href="assets/logo/Icon-180.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/logo/Icon-180.png"
+    />
+    <link rel="shortcut icon" href="assets/logo/Icon-180.png" />
+
+    <!-- Rest of meta tags -->
+    <meta property="og:title" content="ScreenApp" />
+    <meta property="og:url" content="https://screenapp.io" />
+    <meta
+      property="og:description"
+      content="Record anything, summarize and take notes and ask anything with AI so you can find what you need quickly."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="title" content="ScreenApp" />
+    <meta
+      name="description"
+      content="Record anything, summarize and take notes and ask anything with AI so you can find what you need quickly."
+    />
+    <meta name="author" content="ScreenApp" />
+    <meta
+      name="keywords"
+      content="ScreenApp, AI Summarizer, AI Recorder, AI Notetaker"
+    />
+
+    <!-- Up to Chrome 113 (ends with the rollout of next Chrome release), no later than Jun 30, 2023 -->
+    <meta
+      http-equiv="origin-trial"
+      content="AnFT058jlLOy3IIQhvtCvmJovlVkH1wScFudZrpc6BO2jKZmYNXIUs2e4acDFMVKtMgvENvUBrNXAbHU12yAdAkAAAB2eyJvcmlnaW4iOiJodHRwczovL3NjcmVlbmFwcC5pbzo0NDMiLCJmZWF0dXJlIjoiVW5yZXN0cmljdGVkU2hhcmVkQXJyYXlCdWZmZXIiLCJleHBpcnkiOjE2ODgwODMxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Roboto+Mono"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Inter"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet"/> -->
+    <title>ScreenApp</title>
+    <!-- PLEASE DO NO INCLUDE ANY APPLICATION SCRIPTS HERE (eg: Hubspot, Intercom, Google Analytics). USE GOOGLE TAG MANAGER INSTEAD -->
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-N5297TV');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="manifest" href="manifest.json" />
+    <script type="module" crossorigin src="/app/index-6.38.17.bundle.js"></script>
+    <link rel="modulepreload" crossorigin href="/app/chunks/index-CYoaysmc.js">
+    <link rel="stylesheet" crossorigin href="/app/assets/index-CYwwwFN-.css">
+  </head>
+
+  <body
+    class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden"
+  >
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N5297TV"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="root"></div>
+  </body>
+</html>
