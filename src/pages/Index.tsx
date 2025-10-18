@@ -73,67 +73,77 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
-      {/* Top Left - F1 Bunny Logo */}
-      <div className="absolute top-0 left-4 z-10 animate-fade-in">
-        <img
-          src={f1BunnyLogo} 
-          alt="F1 Bunny Logo" 
-          className="h-48 w-auto"
-        />
-      </div>
-
-      {/* Main Content */}
-      <div className="container mx-auto px-4 flex flex-col items-center">
-        {/* Hero Section - Only show if prompt not sent */}
-        {!promptSent && (
-          <div className={`text-center mb-8 animate-fade-in ${messages.length > 0 ? 'mb-6' : ''}`}>
-            <h1 className="text-5xl md:text-7xl font-black mb-4 text-racing-gradient">
-              Hi, Welcome to F1 Bunny!
-            </h1>
-            <p className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
-              This is Vax Merstappen 🦾
-            </p>
+    <div className="min-h-screen relative overflow-hidden flex flex-col">
+      {/* Header - ChatGPT Style */}
+      <header className="sticky top-0 z-20 bg-[hsl(var(--background))]/80 backdrop-blur-md border-b border-[hsl(var(--border))] px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img
+              src={f1BunnyLogo} 
+              alt="F1 Bunny Logo" 
+              className="h-10 w-auto"
+            />
+            <span className="text-xl font-semibold text-foreground hidden sm:block">F1 Bunny</span>
           </div>
-        )}
+          <div className="flex items-center gap-2">
+            <a
+              href="https://www.formula1.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img
+                src={f1OfficialLogo} 
+                alt="F1 Official Logo" 
+                className="h-8 w-auto"
+              />
+            </a>
+          </div>
+        </div>
+      </header>
 
-        {/* Chat Display */}
-        {messages.length > 0 && (
-          <div className="w-full max-w-4xl mb-8 bg-secondary/30 rounded-lg border border-border p-6 max-h-[400px] overflow-y-auto backdrop-blur-sm">
-            {messages.map((msg, index) => (
-              <ChatMessage key={index} role={msg.role} content={msg.content} />
-            ))}
-            {isLoading && (
-              <div className="flex justify-start mb-4">
-                <div className="bg-secondary border border-border rounded-lg px-4 py-3 racing-glow">
-                  <p className="text-sm text-muted-foreground">Vax is thinking...</p>
-                </div>
+      {/* Main Chat Area */}
+      <main className="flex-1 overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-y-auto">
+          <div className="max-w-4xl mx-auto px-4 py-8">
+            {/* Welcome Message - Only show if prompt not sent */}
+            {!promptSent && (
+              <div className="text-center mb-12 animate-fade-in">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground" style={{ lineHeight: '1.2' }}>
+                  Hi, Welcome to F1 Bunny!
+                </h1>
+                <p className="text-xl md:text-2xl text-muted-foreground" style={{ lineHeight: '1.5' }}>
+                  Chat with Vax Merstappen 🦾 - Your F1 AI Assistant
+                </p>
               </div>
             )}
-            <div ref={messagesEndRef} />
+
+            {/* Chat Messages */}
+            {messages.length > 0 && (
+              <div className="space-y-4 mb-6">
+                {messages.map((msg, index) => (
+                  <ChatMessage key={index} role={msg.role} content={msg.content} />
+                ))}
+                {isLoading && (
+                  <div className="flex justify-start mb-6 animate-fade-in">
+                    <div className="bg-[hsl(var(--assistant-bubble))] rounded-2xl px-5 py-4 shadow-[var(--shadow-bubble)]">
+                      <p className="text-base text-muted-foreground">Vax is thinking...</p>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+            )}
           </div>
-        )}
-
-        {/* Chat Input */}
-        <div className="mb-12 w-full flex justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
-          <ChatInput onSend={handleSendMessage} />
         </div>
-      </div>
 
-      {/* Bottom Left - F1 Official Logo */}
-      <a
-        href="https://www.formula1.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute bottom-6 left-6 z-10 animate-fade-in hover:scale-110 transition-transform"
-        style={{ animationDelay: "0.6s" }}
-      >
-        <img
-          src={f1OfficialLogo} 
-          alt="F1 Official Logo" 
-          className="h-12 w-auto drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]"
-        />
-      </a>
+        {/* Chat Input - Sticky at bottom */}
+        <div className="sticky bottom-0 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))] to-transparent pt-6 pb-8 px-4">
+          <div className="max-w-4xl mx-auto">
+            <ChatInput onSend={handleSendMessage} />
+          </div>
+        </div>
+      </main>
 
       {/* Music Toggle - Bottom Right */}
       <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
@@ -145,10 +155,10 @@ const Index = () => {
         <FeedbackModal />
       </div>
 
-      {/* Background Effects */}
+      {/* Background Effects - More subtle */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-racing-red/10 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-racing-red/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/3 -left-1/4 w-1/2 h-1/2 bg-racing-red/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/3 -right-1/4 w-1/2 h-1/2 bg-racing-red/5 rounded-full blur-[120px]" />
       </div>
     </div>
   );

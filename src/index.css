@@ -8,23 +8,23 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 93%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 93%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 93%;
 
     --primary: 0 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 93%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 0 100% 50%;
     --accent-foreground: 0 0% 100%;
@@ -32,24 +32,33 @@ All colors MUST be HSL.
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
+    --border: 0 0% 22%;
+    --input: 0 0% 16%;
     --ring: 0 100% 50%;
 
     --radius: 0.75rem;
 
-    /* F1 Racing Theme Custom Variables */
+    /* ChatGPT-Style Theme Variables */
     --racing-red: 0 100% 50%;
     --racing-red-glow: 0 100% 50%;
-    --carbon-dark: 0 0% 5%;
-    --carbon-darker: 0 0% 3%;
+    --carbon-dark: 0 0% 7%;
+    --carbon-darker: 0 0% 5%;
+    
+    /* ChatGPT-style message bubbles */
+    --user-bubble: 0 100% 50%;
+    --user-bubble-foreground: 0 0% 100%;
+    --assistant-bubble: 0 0% 14%;
+    --assistant-bubble-foreground: 0 0% 93%;
     
     /* Gradients */
     --gradient-racing: linear-gradient(135deg, hsl(var(--carbon-dark)), hsl(var(--carbon-darker)));
     --gradient-red-glow: linear-gradient(90deg, transparent, hsl(var(--racing-red) / 0.3), transparent);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 5%));
     
-    /* Shadows */
-    --shadow-red-glow: 0 0 30px hsl(var(--racing-red) / 0.5), 0 0 60px hsl(var(--racing-red) / 0.3);
+    /* Shadows - ChatGPT style */
+    --shadow-bubble: 0 2px 8px hsl(0 0% 0% / 0.2);
+    --shadow-bubble-hover: 0 4px 12px hsl(0 0% 0% / 0.3);
+    --shadow-red-glow: 0 0 20px hsl(var(--racing-red) / 0.3);
     --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.5);
     
     /* Animations */
@@ -63,8 +72,9 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-orbitron;
-    background: linear-gradient(180deg, #000000 0%, #0D0D0D 100%);
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 5%) 100%);
     min-height: 100vh;
   }
 }
