@@ -75,30 +75,13 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
       {/* Header - ChatGPT Style */}
-      <header className="sticky top-0 z-20 bg-[hsl(var(--background))]/80 backdrop-blur-md border-b border-[hsl(var(--border))] px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img
-              src={f1BunnyLogo} 
-              alt="F1 Bunny Logo" 
-              className="h-10 w-auto"
-            />
-            <span className="text-xl font-semibold text-foreground hidden sm:block">F1 Bunny</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <a
-              href="https://www.formula1.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-80 transition-opacity"
-            >
-              <img
-                src={f1OfficialLogo} 
-                alt="F1 Official Logo" 
-                className="h-8 w-auto"
-              />
-            </a>
-          </div>
+      <header className="sticky top-0 z-20 bg-[hsl(var(--background))]/80 backdrop-blur-md px-6 py-4">
+        <div className="max-w-7xl mx-auto">
+          <img
+            src={f1BunnyLogo} 
+            alt="F1 Bunny Logo" 
+            className="h-12 w-auto"
+          />
         </div>
       </header>
 
@@ -144,6 +127,22 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+      {/* F1 Official Logo - Bottom Left */}
+      <div className="fixed bottom-6 left-6 z-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <a
+          href="https://www.formula1.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block hover:opacity-80 transition-opacity"
+        >
+          <img
+            src={f1OfficialLogo} 
+            alt="F1 Official Logo" 
+            className="h-8 w-auto"
+          />
+        </a>
+      </div>
 
       {/* Music Toggle - Bottom Right */}
       <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
