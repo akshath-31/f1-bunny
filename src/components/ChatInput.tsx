@@ -31,7 +31,7 @@ export const ChatInput = ({ onSend }: ChatInputProps) => {
         onChange={(e) => setMessage(e.target.value)}
         onKeyPress={handleKeyPress}
         placeholder="Ask Vax Merstappen anything about F1..."
-        className="flex-1 bg-secondary border-border racing-glow text-foreground placeholder:text-muted-foreground"
+        className="flex-1 bg-secondary border-border racing-glow text-foreground placeholder:text-muted-foreground font-inter"
       />
       <Button 
         onClick={handleSend}

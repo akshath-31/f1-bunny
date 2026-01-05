@@ -17,7 +17,7 @@ export const ChatMessage = ({ role, content }: ChatMessageProps) => {
             : "bg-secondary text-foreground border border-border"
         }`}
       >
-        <div className="prose prose-base prose-invert max-w-none [&>*]:mb-3 [&>p]:leading-relaxed">
+        <div className="prose prose-base prose-invert max-w-none [&>*]:mb-3 [&>p]:leading-relaxed font-inter">
           <ReactMarkdown>{content}</ReactMarkdown>
         </div>
       </div>
