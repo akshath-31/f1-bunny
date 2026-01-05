@@ -37,17 +37,15 @@ const Index = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://agent-prod.studio.lyzr.ai/v3/inference/chat/', {
+      // Use the edge function that handles time-sensitive queries
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/f1-chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': 'sk-default-RzDw0LhoScaOw3Nr8LNptnnoMq9x8OpF',
         },
         body: JSON.stringify({
-          user_id: 's.akshath31@gmail.com',
-          agent_id: '68e2a2ad1d634c8310981140',
-          session_id: '68e2a2ad1d634c8310981140-0nnm1s6qthc',
           message: message,
+          session_id: '68e2a2ad1d634c8310981140-' + Date.now(),
         }),
       });
 
@@ -62,9 +60,14 @@ const Index = () => {
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
-      toast.success("Vax Merstappen responded!");
+      
+      if (data.usedLiveData) {
+        toast.success("Vax responded with live F1 data!");
+      } else {
+        toast.success("Vax Merstappen responded!");
+      }
     } catch (error) {
-      console.error("Error calling Lysr AI:", error);
+      console.error("Error calling F1 chat:", error);
       toast.error("Failed to get response. Please try again.");
       setMessages((prev) => prev.slice(0, -1));
     } finally {
