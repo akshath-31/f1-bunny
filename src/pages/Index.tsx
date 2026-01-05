@@ -88,12 +88,12 @@ const Index = () => {
         {/* Hero Section - Only show if prompt not sent */}
         {!promptSent && (
           <div className={`text-center mb-8 animate-fade-in ${messages.length > 0 ? 'mb-6' : ''}`}>
-            <h1 className="text-5xl md:text-7xl font-black mb-4 text-racing-gradient">
-              Hi, Welcome to F1 Bunny!
-            </h1>
-            <p className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
-              This is Vax Merstappen 🦾
-            </p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-racing-gradient font-inter">
+            Hi, Welcome to F1 Bunny!
+          </h1>
+          <p className="text-2xl md:text-3xl font-medium text-foreground flex items-center justify-center gap-2 font-inter">
+            This is Vax Merstappen 🦾
+          </p>
           </div>
         )}
 

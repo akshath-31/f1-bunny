@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         orbitron: ['Orbitron', 'sans-serif'],
         mono: ['Share Tech Mono', 'monospace'],
+        inter: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
