@@ -1,30 +1,50 @@
 import { useState } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "service_7pzhk2s";
+const EMAILJS_TEMPLATE_ID = "template_qaxjumc";
+const EMAILJS_PUBLIC_KEY = "yEDHBeMoajpHn_oYP";
 
 export const FeedbackModal = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Placeholder for EmailJS integration
-    console.log("Feedback submitted:", { name, email, message });
-    
-    toast.success("Thank you for your feedback!");
-    
-    // Reset form
-    setName("");
-    setEmail("");
-    setMessage("");
-    setOpen(false);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: name,
+          from_email: email,
+          message: message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      
+      toast.success("Thank you for your feedback!");
+      setName("");
+      setEmail("");
+      setMessage("");
+      setOpen(false);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast.error("Failed to send feedback. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -74,8 +94,9 @@ export const FeedbackModal = () => {
           <Button 
             type="submit" 
             className="w-full racing-glow bg-primary hover:bg-primary/90"
+            disabled={isSubmitting}
           >
-            Send Feedback
+            {isSubmitting ? "Sending..." : "Send Feedback"}
           </Button>
         </form>
       </DialogContent>
