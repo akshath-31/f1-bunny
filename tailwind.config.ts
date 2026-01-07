@@ -97,12 +97,30 @@ export default {
             boxShadow: "0 0 40px hsl(var(--racing-red) / 0.8)"
           }
         },
+        "bounce-dot": {
+          "0%, 80%, 100%": {
+            transform: "translateY(0)"
+          },
+          "40%": {
+            transform: "translateY(-6px)"
+          }
+        },
+        "blink": {
+          "0%, 100%": {
+            opacity: "1"
+          },
+          "50%": {
+            opacity: "0"
+          }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "bounce-dot": "bounce-dot 1.4s ease-in-out infinite",
+        "blink": "blink 0.53s step-end infinite",
       },
     },
   },
