@@ -3,6 +3,7 @@ import { ChatInput } from "@/components/ChatInput";
 import { ChatMessage } from "@/components/ChatMessage";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import { MusicToggle } from "@/components/MusicToggle";
+import { TypingIndicator } from "@/components/TypingIndicator";
 import f1BunnyLogo from "@/assets/f1-bunny-logo-new.png";
 import f1OfficialLogo from "@/assets/f1-official-logo.webp";
 import { toast } from "sonner";
@@ -10,6 +11,7 @@ import { toast } from "sonner";
 interface Message {
   role: "user" | "assistant";
   content: string;
+  isNew?: boolean;
 }
 
 const Index = () => {
@@ -57,9 +59,19 @@ const Index = () => {
       const assistantMessage: Message = {
         role: "assistant",
         content: data.response || "I couldn't process that question. Please try again.",
+        isNew: true,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
+
+      // Mark message as not new after animation completes
+      setTimeout(() => {
+        setMessages((prev) =>
+          prev.map((msg, idx) =>
+            idx === prev.length - 1 ? { ...msg, isNew: false } : msg
+          )
+        );
+      }, (data.response?.length || 50) * 15 + 500);
       
       if (data.usedLiveData) {
         toast.success("Vax responded with live F1 data!");
@@ -104,15 +116,14 @@ const Index = () => {
         {messages.length > 0 && (
           <div className="w-full max-w-4xl mb-8 bg-secondary/30 rounded-lg border border-border p-6 max-h-[400px] overflow-y-auto backdrop-blur-sm">
             {messages.map((msg, index) => (
-              <ChatMessage key={index} role={msg.role} content={msg.content} />
+              <ChatMessage
+                key={index}
+                role={msg.role}
+                content={msg.content}
+                animate={msg.isNew && index === messages.length - 1}
+              />
             ))}
-            {isLoading && (
-              <div className="flex justify-start mb-4">
-                <div className="bg-secondary border border-border rounded-lg px-4 py-3 racing-glow">
-                  <p className="text-sm text-muted-foreground">Vax is thinking...</p>
-                </div>
-              </div>
-            )}
+            {isLoading && <TypingIndicator />}
             <div ref={messagesEndRef} />
           </div>
         )}

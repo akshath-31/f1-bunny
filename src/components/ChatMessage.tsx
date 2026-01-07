@@ -1,13 +1,22 @@
 import ReactMarkdown from "react-markdown";
+import { useTypewriter } from "@/hooks/useTypewriter";
 
 interface ChatMessageProps {
   role: "user" | "assistant";
   content: string;
+  animate?: boolean;
 }
 
-export const ChatMessage = ({ role, content }: ChatMessageProps) => {
+export const ChatMessage = ({ role, content, animate = false }: ChatMessageProps) => {
   const isUser = role === "user";
-  
+  const { displayedText, isTyping } = useTypewriter({
+    text: content,
+    speed: 15,
+    enabled: animate && !isUser,
+  });
+
+  const textToShow = animate && !isUser ? displayedText : content;
+
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-4 animate-fade-in`}>
       <div
@@ -18,7 +27,8 @@ export const ChatMessage = ({ role, content }: ChatMessageProps) => {
         }`}
       >
         <div className="prose prose-base prose-invert max-w-none [&>*]:mb-3 [&>p]:leading-relaxed font-inter">
-          <ReactMarkdown>{content}</ReactMarkdown>
+          <ReactMarkdown>{textToShow}</ReactMarkdown>
+          {isTyping && <span className="inline-block w-0.5 h-4 bg-foreground animate-blink ml-0.5" />}
         </div>
       </div>
     </div>
