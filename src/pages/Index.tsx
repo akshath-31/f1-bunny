@@ -15,12 +15,20 @@ interface Message {
   isNew?: boolean;
 }
 
+const SUGGESTED_PROMPTS = [
+  "How does a Formula 1 weekend actually work?",
+  "Why is Monaco so special?",
+  "Who are the main title contenders this season?",
+  "What are the most iconic races in Formula 1 history?",
+];
+
 const Index = () => {
   useTabTitle("F1 Bunny", "👀 Box box… come back");
   
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [promptSent, setPromptSent] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -124,6 +132,24 @@ const Index = () => {
             ))}
             {isLoading && <TypingIndicator />}
             <div ref={messagesEndRef} />
+          </div>
+        )}
+
+        {/* Suggested Prompts */}
+        {showSuggestions && !promptSent && (
+          <div className="w-full max-w-4xl mb-6 flex flex-wrap justify-center gap-2 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            {SUGGESTED_PROMPTS.map((prompt, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setShowSuggestions(false);
+                  handleSendMessage(prompt);
+                }}
+                className="px-4 py-2 bg-secondary/50 hover:bg-secondary/80 border border-border rounded-full text-sm text-foreground/80 hover:text-foreground transition-all duration-200 hover:scale-105"
+              >
+                {prompt}
+              </button>
+            ))}
           </div>
         )}
 
