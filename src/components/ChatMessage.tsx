@@ -28,7 +28,6 @@ export const ChatMessage = ({ role, content, animate = false }: ChatMessageProps
       >
         <div className="prose prose-base prose-invert max-w-none [&>*]:mb-3 [&>p]:leading-relaxed font-inter">
           <ReactMarkdown>{textToShow}</ReactMarkdown>
-          {isTyping && <span className="inline-block w-0.5 h-4 bg-foreground animate-blink ml-0.5" />}
         </div>
       </div>
     </div>
