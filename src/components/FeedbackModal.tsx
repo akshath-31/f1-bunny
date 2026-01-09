@@ -52,7 +52,7 @@ export const FeedbackModal = () => {
       <DialogTrigger asChild>
         <Button 
           className="fixed bottom-6 right-6 racing-glow bg-primary hover:bg-primary/90 rounded-full h-14 w-14 p-0"
-          title="Send Feedback"
+          title="Send Suggestions"
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
