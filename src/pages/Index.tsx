@@ -73,11 +73,7 @@ const Index = () => {
         );
       }, (data.response?.length || 50) * 15 + 500);
       
-      if (data.usedLiveData) {
-        toast.success("Vax responded with live F1 data!");
-      } else {
-        toast.success("Vax Merstappen responded!");
-      }
+      // Response notification removed for cleaner UX
     } catch (error) {
       console.error("Error calling F1 chat:", error);
       toast.error("Failed to get response. Please try again.");
@@ -149,15 +145,11 @@ const Index = () => {
         />
       </a>
 
-      {/* Music Toggle - Bottom Right */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
-        <MusicToggle />
-      </div>
+      {/* Music Toggle - Bottom Right (fixed positioning in component) */}
+      <MusicToggle />
 
-      {/* Feedback Button - Bottom Right */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.6s" }}>
-        <FeedbackModal />
-      </div>
+      {/* Feedback Button - Bottom Right (fixed positioning in component) */}
+      <FeedbackModal />
 
       {/* Background Effects */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
