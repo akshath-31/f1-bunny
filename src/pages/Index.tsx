@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useTabTitle } from "@/hooks/useTabTitle";
 import { ChatInput } from "@/components/ChatInput";
 import { ChatMessage } from "@/components/ChatMessage";
 import { FeedbackModal } from "@/components/FeedbackModal";
@@ -15,6 +16,8 @@ interface Message {
 }
 
 const Index = () => {
+  useTabTitle("F1 Bunny", "👀 Box box… come back");
+  
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [promptSent, setPromptSent] = useState(false);
