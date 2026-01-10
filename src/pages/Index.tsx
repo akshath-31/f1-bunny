@@ -101,7 +101,7 @@ const Index = () => {
         <img
           src={f1BunnyLogo} 
           alt="F1 Bunny Logo" 
-          className="h-48 w-auto"
+          className="h-24 md:h-32 lg:h-48 w-auto"
         />
       </div>
 
@@ -109,11 +109,11 @@ const Index = () => {
       <div className="container mx-auto px-4 flex flex-col items-center">
         {/* Hero Section - Only show if prompt not sent */}
         {!promptSent && (
-          <div className={`text-center mb-8 animate-fade-in ${messages.length > 0 ? 'mb-6' : ''}`}>
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-racing-red hover:text-orange-500 transition-colors duration-300 ease-in-out cursor-default font-inter">
+          <div className={`text-center mb-8 animate-fade-in px-4 sm:px-0 ${messages.length > 0 ? 'mb-6' : ''}`}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 text-racing-red hover:text-orange-500 transition-colors duration-300 ease-in-out cursor-default font-inter">
             Hi, Welcome to F1 Bunny!
           </h1>
-          <p className="text-2xl md:text-3xl font-medium text-foreground hover:text-orange-500 transition-colors duration-300 ease-in-out cursor-default flex items-center justify-center gap-2 font-inter">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-foreground hover:text-orange-500 transition-colors duration-300 ease-in-out cursor-default flex items-center justify-center gap-2 font-inter">
             This is Vax Merstappen 🦾
           </p>
           </div>
@@ -137,7 +137,7 @@ const Index = () => {
 
         {/* Suggested Prompts */}
         {showSuggestions && !promptSent && (
-          <div className="w-full max-w-4xl mb-6 flex flex-wrap justify-center gap-2 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <div className="w-full max-w-4xl mb-6 flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-2 px-4 sm:px-0 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             {SUGGESTED_PROMPTS.map((prompt, index) => (
               <button
                 key={index}
@@ -145,7 +145,7 @@ const Index = () => {
                   setShowSuggestions(false);
                   handleSendMessage(prompt);
                 }}
-                className="px-4 py-2 bg-secondary/50 hover:bg-secondary/80 border border-border rounded-full text-sm text-foreground/80 hover:text-foreground transition-all duration-200 hover:scale-105"
+                className="w-full sm:w-auto px-4 py-2 bg-secondary/50 hover:bg-secondary/80 border border-border rounded-full text-sm text-foreground/80 hover:text-foreground transition-all duration-200 hover:scale-105"
               >
                 {prompt}
               </button>
@@ -154,7 +154,7 @@ const Index = () => {
         )}
 
         {/* Chat Input */}
-        <div className="mb-12 w-full flex justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <div className="mb-12 w-full flex justify-center px-4 sm:px-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <ChatInput onSend={handleSendMessage} />
         </div>
       </div>
@@ -164,13 +164,13 @@ const Index = () => {
         href="https://www.formula1.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute bottom-6 left-6 z-10 animate-fade-in hover:scale-110 transition-transform"
+        className="absolute bottom-6 left-4 sm:left-6 z-10 animate-fade-in hover:scale-110 transition-transform"
         style={{ animationDelay: "0.6s" }}
       >
         <img
           src={f1OfficialLogo} 
           alt="F1 Official Logo" 
-          className="h-12 w-auto drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]"
+          className="h-8 md:h-10 lg:h-12 w-auto drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]"
         />
       </a>
 

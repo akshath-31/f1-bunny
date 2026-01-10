@@ -68,14 +68,14 @@ export const MusicToggle = () => {
       <Button
         onClick={toggleMute}
         size="icon"
-        className="fixed bottom-24 right-6 z-50 h-14 w-14 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg racing-glow"
+        className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg racing-glow"
         aria-label={isMuted ? "Unmute music" : "Mute music"}
         title={isMuted ? "Unmute music" : "Mute music"}
       >
         {isMuted ? (
-          <VolumeX className="h-6 w-6" />
+          <VolumeX className="h-5 w-5 sm:h-6 sm:w-6" />
         ) : (
-          <Volume2 className="h-6 w-6" />
+          <Volume2 className="h-5 w-5 sm:h-6 sm:w-6" />
         )}
       </Button>
     </>
