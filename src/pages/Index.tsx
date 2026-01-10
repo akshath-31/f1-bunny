@@ -138,18 +138,22 @@ const Index = () => {
         {/* Suggested Prompts */}
         {showSuggestions && !promptSent && (
           <div className="w-full max-w-4xl mb-6 flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-2 px-4 sm:px-0 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            {SUGGESTED_PROMPTS.map((prompt, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setShowSuggestions(false);
-                  handleSendMessage(prompt);
-                }}
-                className="w-full sm:w-auto px-4 py-2 bg-secondary/50 hover:bg-secondary/80 border border-border rounded-full text-sm text-foreground/80 hover:text-foreground transition-all duration-200 hover:scale-105"
-              >
-                {prompt}
-              </button>
-            ))}
+            {SUGGESTED_PROMPTS.map((prompt, index) => {
+              // On mobile (< sm), only show prompts at index 0 and 3
+              const mobileVisible = index === 0 || index === 3;
+              return (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setShowSuggestions(false);
+                    handleSendMessage(prompt);
+                  }}
+                  className={`w-full sm:w-auto px-4 py-2 bg-secondary/50 hover:bg-secondary/80 border border-border rounded-full text-sm text-foreground/80 hover:text-foreground transition-all duration-200 hover:scale-105 ${mobileVisible ? '' : 'hidden sm:block'}`}
+                >
+                  {prompt}
+                </button>
+              );
+            })}
           </div>
         )}
 
