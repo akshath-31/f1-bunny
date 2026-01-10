@@ -25,13 +25,13 @@ export const ChatInput = ({ onSend }: ChatInputProps) => {
   };
 
   return (
-    <div className="flex gap-3 w-full max-w-3xl">
+    <div className="flex gap-2 sm:gap-3 w-full max-w-3xl">
       <Input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyPress={handleKeyPress}
         placeholder="Ask Vax Merstappen anything about F1..."
-        className="flex-1 bg-secondary border-border racing-glow text-foreground placeholder:text-muted-foreground font-inter"
+        className="flex-1 min-w-0 bg-secondary border-border racing-glow text-foreground placeholder:text-muted-foreground font-inter"
       />
       <Button 
         onClick={handleSend}

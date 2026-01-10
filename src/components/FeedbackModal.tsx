@@ -51,10 +51,10 @@ export const FeedbackModal = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button 
-          className="fixed bottom-6 right-6 racing-glow bg-primary hover:bg-primary/90 rounded-full h-14 w-14 p-0"
+          className="fixed bottom-6 right-4 sm:right-6 racing-glow bg-primary hover:bg-primary/90 rounded-full h-12 w-12 sm:h-14 sm:w-14 p-0"
           title="Send Suggestions"
         >
-          <MessageCircle className="h-6 w-6" />
+          <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
         </Button>
       </DialogTrigger>
       <DialogContent className="carbon-fiber border-border">
