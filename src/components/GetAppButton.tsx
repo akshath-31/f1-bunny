@@ -59,50 +59,52 @@ const GetAppButton = () => {
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="absolute right-0 mt-2 w-56 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden animate-fade-in"
+          className="absolute right-0 top-full pt-2 w-56 z-50 animate-fade-in"
         >
-          {/* Windows Download */}
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
-          >
-            <Download className="h-4 w-4 text-muted-foreground" />
-            <span>Download for Windows</span>
-          </a>
+          <div className="bg-card border border-border rounded-lg shadow-lg overflow-hidden">
+            {/* Windows Download */}
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
+            >
+              <Download className="h-4 w-4 text-muted-foreground" />
+              <span>Download for Windows</span>
+            </a>
 
-          {/* Android Download */}
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
-          >
-            <Download className="h-4 w-4 text-muted-foreground" />
-            <span>Download for Android</span>
-          </a>
+            {/* Android Download */}
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
+            >
+              <Download className="h-4 w-4 text-muted-foreground" />
+              <span>Download for Android</span>
+            </a>
 
-          {/* iOS - Coming Soon (Disabled) */}
-          <div className="flex items-center gap-3 px-4 py-3 text-sm text-muted-foreground cursor-not-allowed opacity-50">
-            <Download className="h-4 w-4" />
-            <div className="flex flex-col">
-              <span>Download for iOS</span>
-              <span className="text-xs">Coming soon</span>
+            {/* iOS - Coming Soon (Disabled) */}
+            <div className="flex items-center gap-3 px-4 py-3 text-sm text-muted-foreground cursor-not-allowed opacity-50">
+              <Download className="h-4 w-4" />
+              <div className="flex flex-col">
+                <span>Download for iOS</span>
+                <span className="text-xs">Coming soon</span>
+              </div>
             </div>
+
+            {/* Divider */}
+            <div className="h-px bg-border mx-2" />
+
+            {/* Meet the Creator */}
+            <a
+              href="https://akshathsenthilkumar.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
+            >
+              <ExternalLink className="h-4 w-4 text-muted-foreground" />
+              <span>Meet the creator</span>
+            </a>
           </div>
-
-          {/* Divider */}
-          <div className="h-px bg-border mx-2" />
-
-          {/* Meet the Creator */}
-          <a
-            href="https://akshathsenthilkumar.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
-          >
-            <ExternalLink className="h-4 w-4 text-muted-foreground" />
-            <span>Meet the creator</span>
-          </a>
         </div>
       )}
     </div>
