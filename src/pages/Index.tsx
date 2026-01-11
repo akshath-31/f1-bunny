@@ -5,6 +5,7 @@ import { ChatMessage } from "@/components/ChatMessage";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import { MusicToggle } from "@/components/MusicToggle";
 import { TypingIndicator } from "@/components/TypingIndicator";
+import { GetAppButton } from "@/components/GetAppButton";
 import f1BunnyLogo from "@/assets/f1-bunny-logo-new.png";
 import f1OfficialLogo from "@/assets/f1-official-logo.webp";
 import { toast } from "sonner";
@@ -103,6 +104,11 @@ const Index = () => {
           alt="F1 Bunny Logo" 
           className="h-24 md:h-32 lg:h-48 w-auto"
         />
+      </div>
+
+      {/* Top Right - Get the App Button */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 animate-fade-in">
+        <GetAppButton />
       </div>
 
       {/* Main Content */}
