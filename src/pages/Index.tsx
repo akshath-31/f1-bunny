@@ -154,13 +154,20 @@ const Index = () => {
                     setShowSuggestions(false);
                     handleSendMessage(prompt);
                   }}
-                  className={`w-full sm:w-auto px-4 py-2 bg-secondary/50 hover:bg-secondary/80 border border-border rounded-full text-sm text-foreground/80 hover:text-foreground transition-all duration-200 hover:scale-105 ${mobileVisible ? '' : 'hidden sm:block'}`}
+                  className={`w-full sm:w-auto px-4 py-2 bg-secondary/50 hover:bg-secondary/80 border border-border sm:hover:border-racing-red/50 rounded-full text-sm text-foreground/80 hover:text-foreground transition-all duration-200 sm:hover:shadow-[0_0_15px_rgba(255,24,1,0.25)] ${mobileVisible ? '' : 'hidden sm:block'}`}
                 >
                   {prompt}
                 </button>
               );
             })}
           </div>
+        )}
+
+        {/* Trust Text */}
+        {!promptSent && (
+          <p className="text-xs sm:text-sm text-muted-foreground text-center mb-6 animate-fade-in" style={{ animationDelay: "0.35s" }}>
+            Driven by up-to-date Formula 1 data and insights.
+          </p>
         )}
 
         {/* Chat Input */}
