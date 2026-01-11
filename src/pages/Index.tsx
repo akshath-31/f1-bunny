@@ -163,17 +163,17 @@ const Index = () => {
           </div>
         )}
 
-        {/* Trust Text */}
+        {/* Chat Input */}
+        <div className="w-full flex justify-center px-4 sm:px-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <ChatInput onSend={handleSendMessage} />
+        </div>
+
+        {/* Trust Text - Hero Footer */}
         {!promptSent && (
-          <p className="text-xs sm:text-sm text-muted-foreground text-center mb-6 animate-fade-in" style={{ animationDelay: "0.35s" }}>
+          <p className="text-xs sm:text-sm text-muted-foreground text-center mt-8 mb-12 animate-fade-in" style={{ animationDelay: "0.45s" }}>
             Driven by up-to-date Formula 1 data and insights.
           </p>
         )}
-
-        {/* Chat Input */}
-        <div className="mb-12 w-full flex justify-center px-4 sm:px-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-          <ChatInput onSend={handleSendMessage} />
-        </div>
       </div>
 
       {/* Bottom Left - F1 Official Logo */}
