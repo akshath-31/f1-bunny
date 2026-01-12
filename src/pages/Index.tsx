@@ -169,12 +169,9 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Trust Text - Fixed Footer */}
+      {/* Trust Text - Fixed Footer (viewport-anchored, no animation delay to prevent shift) */}
       {!promptSent && (
-        <p 
-          className="fixed bottom-20 sm:bottom-16 left-1/2 -translate-x-1/2 text-xs sm:text-sm text-muted-foreground text-center z-10 animate-fade-in px-4"
-          style={{ animationDelay: "0.45s" }}
-        >
+        <p className="fixed bottom-[4.5rem] sm:bottom-14 left-0 right-0 text-xs sm:text-sm text-muted-foreground text-center z-10 px-4 pointer-events-none">
           Driven by up-to-date Formula 1 data and insights.
         </p>
       )}
