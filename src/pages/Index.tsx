@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTabTitle } from "@/hooks/useTabTitle";
 import { ChatInput } from "@/components/ChatInput";
 import { ChatMessage } from "@/components/ChatMessage";
@@ -30,15 +30,42 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [promptSent, setPromptSent] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const [userScrolledUp, setUserScrolledUp] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollToBottom = useCallback(() => {
+    if (!userScrolledUp) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [userScrolledUp]);
 
+  // Auto-scroll when messages update or during loading (streaming)
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isLoading, scrollToBottom]);
+
+  // Handle user scroll to detect if they scrolled up
+  const handleScroll = useCallback(() => {
+    const container = chatContainerRef.current;
+    if (!container) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = container;
+    const isAtBottom = scrollHeight - scrollTop - clientHeight < 50;
+
+    if (isAtBottom) {
+      setUserScrolledUp(false);
+    } else {
+      setUserScrolledUp(true);
+    }
+  }, []);
+
+  // Reset user scroll state when a new message is sent
+  useEffect(() => {
+    if (isLoading) {
+      setUserScrolledUp(false);
+    }
+  }, [isLoading]);
 
   const handleSendMessage = async (message: string) => {
     if (!message.trim() || isLoading) return;
@@ -127,7 +154,11 @@ const Index = () => {
 
         {/* Chat Display */}
         {messages.length > 0 && (
-          <div className="w-full max-w-4xl mb-8 bg-secondary/30 rounded-lg border border-border p-6 max-h-[400px] overflow-y-auto backdrop-blur-sm">
+          <div 
+            ref={chatContainerRef}
+            onScroll={handleScroll}
+            className="w-full max-w-4xl mb-8 bg-secondary/30 rounded-lg border border-border p-6 max-h-[400px] overflow-y-auto backdrop-blur-sm scroll-smooth"
+          >
             {messages.map((msg, index) => (
               <ChatMessage
                 key={index}
