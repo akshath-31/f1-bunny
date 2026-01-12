@@ -167,21 +167,24 @@ const Index = () => {
         <div className="w-full flex justify-center px-4 sm:px-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <ChatInput onSend={handleSendMessage} />
         </div>
-
-        {/* Trust Text - Hero Footer */}
-        {!promptSent && (
-          <p className="text-xs sm:text-sm text-muted-foreground text-center mt-8 mb-12 animate-fade-in" style={{ animationDelay: "0.45s" }}>
-            Driven by up-to-date Formula 1 data and insights.
-          </p>
-        )}
       </div>
 
-      {/* Bottom Left - F1 Official Logo */}
+      {/* Trust Text - Fixed Footer */}
+      {!promptSent && (
+        <p 
+          className="fixed bottom-20 sm:bottom-16 left-1/2 -translate-x-1/2 text-xs sm:text-sm text-muted-foreground text-center z-10 animate-fade-in px-4"
+          style={{ animationDelay: "0.45s" }}
+        >
+          Driven by up-to-date Formula 1 data and insights.
+        </p>
+      )}
+
+      {/* Bottom Left - F1 Official Logo (Fixed) */}
       <a
         href="https://www.formula1.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute bottom-6 left-4 sm:left-6 z-10 animate-fade-in hover:scale-110 transition-transform"
+        className="fixed bottom-6 left-4 sm:left-6 z-10 animate-fade-in hover:scale-110 transition-transform"
         style={{ animationDelay: "0.6s" }}
       >
         <img
