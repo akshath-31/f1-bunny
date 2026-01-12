@@ -169,9 +169,9 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Trust Text - Fixed Footer (viewport-anchored, no animation delay to prevent shift) */}
+      {/* Trust Text - Fixed System Footer (viewport-anchored at true bottom) */}
       {!promptSent && (
-        <p className="fixed bottom-[4.5rem] sm:bottom-14 left-0 right-0 text-xs sm:text-sm text-muted-foreground text-center z-10 px-4 pointer-events-none">
+        <p className="fixed bottom-3 sm:bottom-4 left-0 right-0 text-xs sm:text-sm text-muted-foreground text-center z-10 px-16 sm:px-24 pointer-events-none">
           Driven by up-to-date Formula 1 data and insights.
         </p>
       )}
