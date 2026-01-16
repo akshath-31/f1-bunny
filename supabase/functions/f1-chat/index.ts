@@ -16,27 +16,40 @@ const F1_KEYWORDS = [
 
 // Time-sensitive keywords that suggest need for live data
 const TIME_SENSITIVE_KEYWORDS = [
-  'current', 'latest', 'recent', 'now', 'today', 'this season', 'this year',
-  '2024', '2025', '2026', 'standings', 'points', 'championship', 'last race',
-  'next race', 'upcoming', 'schedule', 'results', 'winner', 'won'
+  // Time indicators
+  'current', 'latest', 'recent', 'now', 'today', 'tonight', 'tomorrow', 'yesterday',
+  'this season', 'this year', '2024', '2025', '2026', 'weekend', 'week', 'upcoming',
+  'schedule', 'calendar', 'when', 'time', 'start',
+
+  // Status/Events
+  'live', 'ongoing', 'started', 'finished', 'result', 'results', 'winner', 'won',
+  'qualifying', 'quali', 'pole', 'grid', 'starting grid',
+  'practice', 'fp1', 'fp2', 'fp3', 'sprint',
+  'race', 'grand prix', 'gp',
+
+  // Data points
+  'standings', 'points', 'championship', 'leader', 'leading',
+  'fastest lap', 'lap time', 'sector', 'interval', 'gap',
+  'podium', 'p1', 'p2', 'p3', 'dnf', 'retired', 'crash', 'penalty',
+  'driver of the day', 'dotd', 'pit stop', 'strategy', 'tyre', 'tire'
 ];
 
 function isTimeSensitiveF1Query(message: string): boolean {
   const lowerMessage = message.toLowerCase();
-  
+
   const hasF1Keyword = F1_KEYWORDS.some(keyword => lowerMessage.includes(keyword));
   const hasTimeSensitive = TIME_SENSITIVE_KEYWORDS.some(keyword => lowerMessage.includes(keyword));
-  
+
   // Check for year mentions 2024 or later
   const yearMatch = lowerMessage.match(/20(2[4-9]|[3-9]\d)/);
   const hasRecentYear = yearMatch !== null;
-  
+
   return hasF1Keyword && (hasTimeSensitive || hasRecentYear);
 }
 
 async function searchSerpAPI(query: string): Promise<string> {
   const SERPAPI_KEY = Deno.env.get('SERPAPI_API_KEY');
-  
+
   if (!SERPAPI_KEY) {
     console.error('SERPAPI_API_KEY not configured');
     return '';
@@ -45,20 +58,20 @@ async function searchSerpAPI(query: string): Promise<string> {
   try {
     const searchQuery = `Formula 1 ${query} 2024 2025`;
     const url = `https://serpapi.com/search.json?q=${encodeURIComponent(searchQuery)}&api_key=${SERPAPI_KEY}&num=5`;
-    
+
     console.log('Fetching live F1 data from SerpAPI...');
     const response = await fetch(url);
-    
+
     if (!response.ok) {
       console.error('SerpAPI error:', response.status);
       return '';
     }
 
     const data = await response.json();
-    
+
     // Extract relevant information from search results
     let context = '';
-    
+
     // Get organic results
     if (data.organic_results && data.organic_results.length > 0) {
       const results = data.organic_results.slice(0, 3);
@@ -107,7 +120,7 @@ serve(async (req) => {
 
   try {
     const { message, session_id } = await req.json();
-    
+
     if (!message) {
       return new Response(
         JSON.stringify({ error: 'Message is required' }),
@@ -116,7 +129,7 @@ serve(async (req) => {
     }
 
     const LYSR_API_KEY = Deno.env.get('LYSR_API_KEY');
-    
+
     if (!LYSR_API_KEY) {
       console.error('LYSR_API_KEY not configured');
       return new Response(
@@ -126,13 +139,13 @@ serve(async (req) => {
     }
 
     let augmentedMessage = message;
-    
+
     // Check if query is time-sensitive F1 related
     if (isTimeSensitiveF1Query(message)) {
       console.log('Detected time-sensitive F1 query, fetching live data...');
-      
+
       const liveContext = await searchSerpAPI(message);
-      
+
       if (liveContext) {
         augmentedMessage = `[LIVE DATA CONTEXT - Use this verified information for your response about recent F1 events (2024 season onwards):]
 ${liveContext}
@@ -150,7 +163,7 @@ ${message}
     }
 
     console.log('Sending to Lyzr AI agent...');
-    
+
     // Call the Lyzr AI agent
     const response = await fetch('https://agent-prod.studio.lyzr.ai/v3/inference/chat/', {
       method: 'POST',
@@ -179,7 +192,7 @@ ${message}
     console.log('Lyzr response received successfully');
 
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         response: data.response,
         usedLiveData: isTimeSensitiveF1Query(message)
       }),
