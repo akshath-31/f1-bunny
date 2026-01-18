@@ -1,13 +1,24 @@
 import { useState, useRef, useEffect } from "react";
 import { Download, ExternalLink } from "lucide-react";
+import { open as openExternal } from "@tauri-apps/plugin-shell";
 
 const GetAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTauri, setIsTauri] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  // Check if running in Tauri environment
+  useEffect(() => {
+    // @ts-ignore
+    const runningInTauri = !!window.__TAURI_INTERNALS__ || !!window.__TAURI__;
+    setIsTauri(runningInTauri);
+  }, []);
+
   // Close dropdown when clicking outside
   useEffect(() => {
+    if (isTauri) return; // No dropdown in Tauri
+
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -21,25 +32,41 @@ const GetAppButton = () => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isTauri]);
 
   const handleMouseEnter = () => {
-    // Only enable hover on desktop (>768px)
-    if (window.innerWidth > 768) {
+    // Only enable hover on desktop (>768px) and not in Tauri
+    if (window.innerWidth > 768 && !isTauri) {
       setIsOpen(true);
     }
   };
 
   const handleMouseLeave = () => {
-    // Only enable hover on desktop (>768px)
-    if (window.innerWidth > 768) {
+    // Only enable hover on desktop (>768px) and not in Tauri
+    if (window.innerWidth > 768 && !isTauri) {
       setIsOpen(false);
     }
   };
 
-  const handleClick = () => {
-    setIsOpen((prev) => !prev);
+  const handleClick = (e: React.MouseEvent) => {
+    if (isTauri) {
+      e.preventDefault();
+      openExternal("https://akshathsenthilkumar.netlify.app/").catch(console.error);
+    } else {
+      setIsOpen((prev) => !prev);
+    }
   };
+
+  if (isTauri) {
+    return (
+      <button
+        onClick={handleClick}
+        className="px-4 py-2 bg-secondary/60 hover:bg-secondary/90 border border-border rounded-full text-sm font-medium text-foreground transition-all duration-200 hover:scale-105 inline-block"
+      >
+        Meet the creator
+      </button>
+    );
+  }
 
   return (
     <div
