@@ -91,8 +91,9 @@ const GetAppButton = () => {
           <div className="bg-card border border-border rounded-lg shadow-lg overflow-hidden">
             {/* Windows Download */}
             <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href="https://github.com/akshath-31/f1-bunny/releases/download/v0.1.0/F1Bunny_0.1.0_x64-setup.exe"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
             >
               <Download className="h-4 w-4 text-muted-foreground" />
