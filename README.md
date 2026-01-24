@@ -31,7 +31,7 @@ https://github.com/akshath-31/f1-bunny/releases/download/v0.1.0-windows/F1Bunny_
 Run F1 Bunny as a native Android app with full-screen immersion.
 
 🔽 **Download for Android**  
-https://github.com/akshath-31/f1-bunny/releases/download/v0.1.0-android/F1Bunny_Android_v0.1.0.apk
+https://f1-bunny.vercel.app/downloads/F1Bunny_Android_v0.1.0.apk
 
 **Note:**  
 You may need to enable *“Install from unknown sources”* during installation.
