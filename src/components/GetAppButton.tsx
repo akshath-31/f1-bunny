@@ -102,8 +102,9 @@ const GetAppButton = () => {
 
             {/* Android Download */}
             <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href="https://github.com/akshath-31/f1-bunny/releases/download/v0.1.0-android/F1Bunny_Android_v0.1.0.apk"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
             >
               <Download className="h-4 w-4 text-muted-foreground" />
