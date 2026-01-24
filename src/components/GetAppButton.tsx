@@ -1,23 +1,26 @@
 import { useState, useRef, useEffect } from "react";
 import { Download, ExternalLink } from "lucide-react";
 import { open as openExternal } from "@tauri-apps/plugin-shell";
+import { Capacitor } from "@capacitor/core";
 
 const GetAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTauri, setIsTauri] = useState(false);
+  const [isAndroid, setIsAndroid] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Check if running in Tauri environment
+  // Check if running in Tauri or Android environment
   useEffect(() => {
     // @ts-ignore
     const runningInTauri = !!window.__TAURI_INTERNALS__ || !!window.__TAURI__;
     setIsTauri(runningInTauri);
+    setIsAndroid(Capacitor.getPlatform() === 'android');
   }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    if (isTauri) return; // No dropdown in Tauri
+    if (isTauri || isAndroid) return; // No dropdown in Tauri or Android
 
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -32,18 +35,18 @@ const GetAppButton = () => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isTauri]);
+  }, [isTauri, isAndroid]);
 
   const handleMouseEnter = () => {
-    // Only enable hover on desktop (>768px) and not in Tauri
-    if (window.innerWidth > 768 && !isTauri) {
+    // Only enable hover on desktop (>768px) and not in Tauri/Android
+    if (window.innerWidth > 768 && !isTauri && !isAndroid) {
       setIsOpen(true);
     }
   };
 
   const handleMouseLeave = () => {
-    // Only enable hover on desktop (>768px) and not in Tauri
-    if (window.innerWidth > 768 && !isTauri) {
+    // Only enable hover on desktop (>768px) and not in Tauri/Android
+    if (window.innerWidth > 768 && !isTauri && !isAndroid) {
       setIsOpen(false);
     }
   };
@@ -52,12 +55,15 @@ const GetAppButton = () => {
     if (isTauri) {
       e.preventDefault();
       openExternal("https://akshathsenthilkumar.netlify.app/").catch(console.error);
+    } else if (isAndroid) {
+      e.preventDefault();
+      window.open("https://akshathsenthilkumar.netlify.app/", "_blank");
     } else {
       setIsOpen((prev) => !prev);
     }
   };
 
-  if (isTauri) {
+  if (isTauri || isAndroid) {
     return (
       <button
         onClick={handleClick}
