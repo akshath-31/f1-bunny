@@ -108,7 +108,7 @@ const GetAppButton = () => {
 
             {/* Android Download */}
             <a
-              href="https://github.com/akshath-31/f1-bunny/releases/download/v0.1.0-android/F1Bunny_Android_v0.1.0.apk"
+              href="https://f1-bunny.vercel.app/downloads/F1Bunny_Android_v0.1.0.apk"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-secondary/50 transition-colors"
